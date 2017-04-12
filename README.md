@@ -1,5 +1,11 @@
 # Short-Text-Summarization
 
+## 基础方法
+
+### 提取关键词法计算文本摘要
+
+#### tfidf提取关键词计算文本摘要 [论文地址](http://www.di.ubi.pt/~jpaulo/competence/general/(1958)Luhn.pdf)
+
 ## 文本摘要调研
 
 ### 论文调研
