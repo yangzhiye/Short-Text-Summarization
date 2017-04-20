@@ -6,6 +6,10 @@
 
 #### tfidf提取关键词计算文本摘要 [论文地址](http://www.di.ubi.pt/~jpaulo/competence/general/(1958)Luhn.pdf)
 
+## 评价指标
+
+### ROUGE(ROUGE.py) [论文地址](http://www.aclweb.org/anthology/W04-1013)
+
 ## 文本摘要调研
 
 ### 论文调研
