@@ -8,7 +8,7 @@
 
 ## 评价指标
 
-### ROUGE(ROUGE.py) [论文地址](http://www.aclweb.org/anthology/W04-1013)
+1.ROUGE(ROUGE.py) [论文地址](http://www.aclweb.org/anthology/W04-1013)
 
 ## 文本摘要调研
 
