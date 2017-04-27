@@ -13,7 +13,7 @@ def iter_xml(filepath):
 		line = line.rstrip()
 		line = re.sub('<BR/>',"",line)
 		line = re.sub('<BR>',"",line)
-		line = re.sub('<br>',"",line)
+		line = re.sub('<br',"",line)
 		xml_text.append(line)
 		if re.match('</doc>',line):
 			yield '\n'.join(xml_text)
