@@ -8,8 +8,17 @@ def get_max_k_tuple_list(tuple_list,k):
 	# use heap to return max k tuple
 	return heapq.nlargest(k,tuple_list,key = lambda x:x[1])
 
+def get_wrong_word_list():
+	filepath = "./stopword.txt"
+	f = open(filepath)
+	wrong_word_list = []
+	for i,line in enumerate(f.readlines()):
+		wrong_word_list.append(line.decode("utf8"))
+	f.close()
+	
+	return wrong_word_list
 def get_index_of_summary(dic,model_tfidf,corpus_list,k,list_word):
-	wrong_word_list = [u'；',u'而']
+	wrong_word_list = get_wrong_word_list()
 	#print " ".join(list_word)
 	corpus_list = [word_tuple for word_tuple in corpus_list \
 		if dic.get(word_tuple[0]) not in wrong_word_list and not re.match("^\d*$", dic.get(word_tuple[0]))]
@@ -27,8 +36,6 @@ def get_index_of_summary(dic,model_tfidf,corpus_list,k,list_word):
 		temp_list = []
 		temp_value = 0.0
 		n = 0
-		#print sen_list
-		#print i,sen,len(sen)
 		for j,word in enumerate(sen_list):
 			if word.decode("utf8") in list_max_word:
 				temp_list.insert(j,1)
@@ -45,24 +52,24 @@ def get_index_of_summary(dic,model_tfidf,corpus_list,k,list_word):
 		except:
 			temp_value = 0
 		#print i,n,length,temp_value
-		if length>=5 and length<=15 and temp_value > ans_value:
+		if length>=10 and length<=30 and temp_value > ans_value:
 			ans_value = temp_value
 			ans = re.split('，|。|；|？|！',"".join(list_word))[i]
 	
 	return ans
 
-def use_tfidf_cal_summary(filepath):
-	_,list_word_short_text = get_data.return_cut_word_list_list(filepath)
+def use_tfidf_cal_summary(test_filepath,result_filepath,k):
+	_,list_word_short_text = get_data.return_cut_word_list_list(test_filepath)
 	dic = corpora.Dictionary.load("./model/dictionary.tfidf.dic")
 	model_tfidf = models.TfidfModel.load("./model/PARTI_tfidf_model")
 	corpus = [dic.doc2bow(text) for text in list_word_short_text]
 	
+	result_f = open(result_filepath,'w+')
 	for i,tuple_list in enumerate(corpus):
-		#if i>0:
-		#	break
-		ans = get_index_of_summary(dic,model_tfidf,tuple_list,10,list_word_short_text[i])
-		print ans
+		ans = get_index_of_summary(dic,model_tfidf,tuple_list,k,list_word_short_text[i])
+		result_f.write(ans+"\n")
 	
+	result_f.close()
 
 '''
 def test_a_cal_tfidf(filepath):
@@ -135,6 +142,7 @@ def test_a_cal_tfidf(filepath):
 '''
 
 if __name__ == "__main__":
-	filepath = "./LCSTS/DATA/PART_III.txt"
-	#cal_tfidf(filepath)
-	use_tfidf_cal_summary(filepath)
+	test_filepath = "./LCSTS/DATA/PART_III.txt"
+	for k in range(5,16):
+		result_filepath = "./result/EK_tfidf_result/0426_k=%d.txt"%(k)
+		use_tfidf_cal_summary( test_filepath , result_filepath , k)
