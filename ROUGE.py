@@ -10,8 +10,8 @@ def ROUGE1_character_based(list_predict,list_true):
 			if word in s_true:
 				match_gram+=1
 		all_gram += len(s_true)
-	print "match_gram is:",match_gram
-	print "all_gram is:",all_gram
+	#print "match_gram is:",match_gram
+	#print "all_gram is:",all_gram
 
 	return match_gram*1.0/all_gram
 	
@@ -30,8 +30,8 @@ def ROUGE2_character_based(list_predict,list_true):
 							match_gram+=1
 							break
 		all_gram += len(s_true)-1
-	print "match_gram is:",match_gram
-	print "all_gram is:",all_gram
+	#print "match_gram is:",match_gram
+	#print "all_gram is:",all_gram
 	
 	return match_gram*1.0/all_gram
 
@@ -79,7 +79,7 @@ def ROUGE_SU4(list_predict,list_true,beta):
 	P = match_gram*1.0/predict_all_gram
 	F = (1+beta*beta)*1.0*P*R/(R+(beta*beta*P))
 	print "R is:",R
-	print "P is:",P
+	#print "P is:",P
 	print "F is:",F
 	return R,P,F
 
