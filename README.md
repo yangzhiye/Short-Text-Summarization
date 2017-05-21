@@ -7,7 +7,7 @@
 #### tfidf提取关键词计算文本摘要 [论文地址](http://www.di.ubi.pt/~jpaulo/competence/general/(1958)Luhn.pdf)
 
 #### 结果
-![](https://github.com/yangzhiye/ImageCache/blob/master/LCSTS/LCSTS_tfidf_keyword.png)
+![](https://github.com/yangzhiye/ImageCache/blob/master/LCSTS/lcsts_tfidf.png)
 
 ## 评价指标
 
